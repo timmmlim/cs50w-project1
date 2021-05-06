@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+<div>
+    {% if entry %}
+        {{ entry|safe }}
+        <button class='btn btn-info' type='button'>
+            <a href="{% url 'render_edit' entry_title %}" style="color:white; text-decoration:none">Edit</a>
+        </button>
+        <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')" method='POST' type='button'>
+            <a href="{% url 'delete' entry_title %}" style="color: white; text-decoration: none;">Delete</a>
+        </button>
+        
+    {% else %}
+    <h4>Page doesn't exist!</h4>
+    {% endif %}
+</div>
+
+
+
+
+{% endblock %}
