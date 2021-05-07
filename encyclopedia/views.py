@@ -89,7 +89,7 @@ def update_entry(request):
 
     # save the new entry instead
     util.save_entry(title, new_content)
-    return show_entry(request, title)
+    return HttpResponseRedirect(reverse('entry', kwargs={'entry': title}))
 
 
 def random_entry(request):
@@ -99,7 +99,6 @@ def random_entry(request):
     entries = util.list_entries()
     random_int = random.randint(0, len(entries) - 1)
     random_title = entries[random_int]
-    return show_entry(request, random_title)
-    # return HttpResponseRedirect(reverse("wiki:entry", kwargs={"entry": random_title}))
+    return HttpResponseRedirect(reverse("entry", kwargs={"entry": random_title}))
 
 
